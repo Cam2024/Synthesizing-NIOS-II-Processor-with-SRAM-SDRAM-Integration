@@ -1,0 +1,22 @@
+module lead_one (
+input wire [31:0] data_in,
+output reg [31:0] bit_count
+);
+	reg [31:0] counter;
+
+	integer i;
+
+	always @ (data_in)
+		begin 
+			begin:flag
+				counter = 32'b0;
+					for (i=31; i>0; i=i-1)
+						begin 
+							if (data_in [i] ==1'b0)
+									disable flag;
+							counter = counter + 1'b1;
+						end
+			end
+				bit_count = counter;
+		end
+endmodule
